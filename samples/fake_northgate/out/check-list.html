@@ -1,0 +1,21 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><title>Check list</title><style>
+body{font:11pt/1.4 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+ color:#111;margin:24px auto;max-width:820px;padding:0 16px}
+h1{font-size:17pt;margin:0 0 2px} h2{font-size:12.5pt;margin:20px 0 6px;
+ border-bottom:1.5px solid #111;padding-bottom:2px}
+.sub{color:#444;margin:0 0 10px} .small{font-size:9.5pt;color:#444}
+table{border-collapse:collapse;width:100%;margin:4px 0 8px}
+th,td{border:1px solid #999;padding:5px 7px;text-align:left;
+ vertical-align:top} th{background:#eee;font-size:9.5pt}
+.box{border:1.5px solid #111;padding:8px 12px;margin:10px 0}
+.warn{border:2px solid #111;background:#f3f3f3;padding:8px 12px;margin:10px 0}
+.big{display:flex;gap:12px;margin:12px 0}
+.big div{flex:1;border:1.5px solid #111;padding:10px 12px}
+.big b{display:block;font-size:22pt;line-height:1.1}
+.tick{width:22px} .none{color:#555;font-style:italic}
+ul{margin:4px 0 8px 18px;padding:0} li{margin:2px 0}
+.sign{margin-top:26px;display:flex;gap:30px}
+.sign div{flex:1;border-top:1px solid #111;padding-top:3px;font-size:9.5pt}
+@media print{body{margin:0;max-width:none} h2{break-after:avoid}
+ tr{break-inside:avoid}}
+</style></head><body><h1>Check list: Northgate Neighbours</h1><p class='sub'>Run on 13 Nov 2026. For staff only: this page has client names.</p><h2>How each file was read</h2><ul><li>Northgate_Neighbours_register.csv: read as the attendance sheet (15 clients)</li><li>  client names: columns &#x27;First name&#x27; and &#x27;Last name&#x27; joined</li><li>  counsellor: column &#x27;Advisor&#x27;</li><li>  client number: column &#x27;Ref&#x27;</li><li>  first-day contact: column &#x27;Contact by&#x27;</li><li>  sessions: &#x27;Wk1 06-Oct&#x27;, &#x27;Wk2 13-Oct&#x27;, &#x27;Wk3 20-Oct&#x27;, &#x27;Wk4 27-Oct&#x27;</li><li>  Money Check scores: &#x27;Money Check 1&#x27;, &#x27;Money Check 2&#x27;</li><li>Northgate_Neighbours_session_log.txt: read as notes (68 lines)</li><li>  notes matched to a client: 53; lines that couldn&#x27;t be used: 2; sessions attended on the sheet: 53</li><li>Northgate_Neighbours_diary_returns.csv: read as the diary sheet (45 rows)</li><li>  client: &#x27;Ref&#x27;; week: &#x27;Wk&#x27;; handed in: &#x27;Diary back?&#x27;; days filled: &#x27;Days&#x27;</li></ul><h2>Things the tool couldn't settle (1)</h2><ul><li>A note couldn&#x27;t be matched to one client (more than one fits): &quot;Maria S. — Budget sheet done. Diary given out.&quot;</li></ul><h2>Clients to check (5)</h2><table><tr><th>Client</th><th>Counsellor</th><th>What to check</th></tr><tr><td>Tom Whitby</td><td>Hana Aziz</td><td>A note on 13 Oct says they&#x27;d be away but the dates aren&#x27;t clear; the next session was treated as away with notice. Diary on hold since 13 Oct. The notes don&#x27;t say it&#x27;s back on, so it still isn&#x27;t counted. Please confirm.</td></tr><tr><td>Lina Haddad</td><td>Devon Ross</td><td>A note on 13 Oct mentions contact in words the tool doesn&#x27;t know: &quot;ran over time on the rent arrears letter so no diary handed out.&quot;</td></tr><tr><td>Sandra Mills</td><td>Hana Aziz</td><td>A note on 20 Oct says no texts but gives no other way; shown as call. Please confirm.</td></tr><tr><td>Rita Kowalski</td><td>Devon Ross</td><td>The number stopped working (27 Oct) and the notes give no other way to reach them. way_to_reach is shown as &#x27;paper&#x27; only because the results file needs one of four values (the number no longer works). Nothing is suggested on the Friday sheet.</td></tr><tr><td>Dawn Price</td><td>Hana Aziz</td><td>Diary for week 3 isn&#x27;t entered yet (not entered). It is not counted as missed.</td></tr></table><h2>Left off every Friday sheet at their own request (1)</h2><ul><li>Ahmed Yusuf (Hana Aziz): Asked for no contact between sessions (note of 27 Oct).</li></ul></body></html>

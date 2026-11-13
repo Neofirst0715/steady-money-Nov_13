@@ -1,0 +1,16 @@
+client_id,name,status,way_to_reach,judgment_call,what_it_tests
+N01,Farah Nasser,on track,text,,plain case
+N02,Marcus Bell,stalled,call,,two diary weeks; 'Grace period' and 'Bill payment' in his notes are not clients
+N03,Grace Okafor,stalled,text,,"missed last two, no notice"
+N04,Tom Whitby,on track,call,,"away 'the next two Tuesdays', told in advance; diary 'paused'"
+N05,Lina Haddad,on track,text,,'no diary handed out' = homework not set
+N06,Peter Cho,on track,paper,,"diary on hold, then 'restarted': only week 3 counts"
+N07,Sandra Mills,on track,call,,"'shares the mobile', 'please don't text', 'ringing after 6pm'"
+N08,Ahmed Yusuf,stalled,do not contact,,'asked that we don't contact him at all'
+N09,Rita Kowalski,stalled,paper,,"'number not recognised', 'will write to her instead'"
+N10,Joe Marsh,on track,text,,"shared phone, then 'own mobile now, happy with texts'"
+N11,Bill Fraser,on track,call,,a client called Bill while other notes say 'phone bill'
+N12,Maria Santos,on track,text,,'Maria S.' fits two clients: must not be guessed
+N13,Maria Silva,on track,call,,Late counts as present
+N14,Kofi Mensah,on track,paper,,one missed session; blank diary cell; 'phone's been cut off; letters only'
+N15,Dawn Price,on track,call,,'not entered' diary; 'would rather a call than a text'

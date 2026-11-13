@@ -1,0 +1,21 @@
+client_id,name,counsellor,status,way_to_reach,why,detail,contact_detail,on_friday_sheet,to_check
+H01,Ruth Adams,Jordan Tate,on track,do not contact,Coming and keeping up,,Asked for no contact between sessions (note of 15 Oct).,left off (no contact),
+H02,Leon Baker,Jordan Tate,on track,do not contact,Coming and keeping up,,Asked for no contact between sessions (note of session 3).,left off (no contact),
+H03,Nina Clarke,Amy Stone,on track,text,Coming and keeping up,,"text, no calls (note of session 2)",no,A note on session 2 says no calls; please confirm how to reach them.
+H04,Elena Diaz,Amy Stone,on track,call,Coming and keeping up,,call (note of 15 Oct),no,
+H05,Carys Evans,Jordan Tate,on track,do not contact,Coming and keeping up,,Asked for no contact between sessions (note of 15 Oct).,left off (no contact),
+H06,Dean Ford,Jordan Tate,on track,text,Coming and keeping up,,text (note of session 2),no,
+H07,Priya Green,Amy Stone,on track,text,Coming and keeping up,,"text, no calls (note of session 2)",no,
+H08,Simone Hall,Amy Stone,on track,call,Coming and keeping up,,"call (first-day sheet, not confirmed since)",no,"A note on session 2 mentions contact in words the tool doesn't know: ""ok to leave a voicemail on the landline;"""
+H09,Sami Ibrahim,Jordan Tate,on track,paper,Coming and keeping up,,letter or paper note (note of 15 Oct),no,
+H10,Megan Jones,Jordan Tate,on track,call,Coming and keeping up,,"email (first-day sheet, not confirmed since)",no,way_to_reach is shown as 'call' only because the results file needs one of four values (no way to reach them is recorded). Nothing is suggested on the Friday sheet.
+H11,Tariq Khan,Amy Stone,on track,call,"Away with notice, so the missed sessions don't count",Away with notice for session 3; Missed session 4; One diary week missed (week 2).,"call (first-day sheet, not confirmed since)",no,
+H12,Hope Lewis,Amy Stone,stalled,call,Missed the last two sessions,Absent at session 3 (date unknown) and session 4 (15 Oct); no notice in the notes.,"call (first-day sheet, not confirmed since)",reach out,Diary for week 1 isn't entered yet (blank). It is not counted as missed.
+H13,Faith Moore,Jordan Tate,on track,text,Coming and keeping up,Just back with the diary.,"text (first-day sheet, not confirmed since)",no,"Just back: missed weeks 1, 2, then handed in week 3. Counted as on track; please check."
+H14,Rory Nolan,Jordan Tate,on track,text,"Diary on hold, so the blanks don't count",Diary on hold since date unknown.,"text (first-day sheet, not confirmed since)",no,"Diary on hold since date unknown. The notes don't say it's back on, so it still isn't counted. Please confirm."
+H15,Mark Owens,Amy Stone,on track,call,"Homework wasn't set in weeks 1 and 2, so the blanks don't count",,"call (first-day sheet, not confirmed since)",no,
+H16,Will Grant,Amy Stone,on track,do not contact,Coming and keeping up,,Asked for no contact between sessions (note of session 4).,left off (no contact),"A note asking for no contact fits more than one client, so each is treated as do not contact until someone checks: ""Session 4 | WG | AS: Money Check. Asked for no calls, no texts, no mail between sessions."""
+H17,Wendy Gale,Amy Stone,on track,do not contact,Coming and keeping up,,Asked for no contact between sessions (note of session 4).,left off (no contact),"A note asking for no contact fits more than one client, so each is treated as do not contact until someone checks: ""Session 4 | WG | AS: Money Check. Asked for no calls, no texts, no mail between sessions."""
+H18,Jordan Pike,Jordan Tate,stalled,call,Nothing handed in for two homework weeks,Diary set in weeks 2 and 3; none handed in.,"call (first-day sheet, not confirmed since)",talk at next session,
+H19,Amy Quinn,Jordan Tate,on track,do not contact,Coming and keeping up,,Asked for no contact between sessions (note of date unknown).,left off (no contact),
+H20,Stone Reid,Amy Stone,stalled,text,Missed the last two sessions,Absent at session 3 (date unknown) and session 4 (15 Oct); no notice in the notes.,"text (first-day sheet, not confirmed since)",reach out,"The attendance sheet says absent for session 4, but there is a note for that day that reads as if they came. The sheet was used. Please check."

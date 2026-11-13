@@ -1,0 +1,17 @@
+client_id,status,way_to_reach,why
+row 1,on track,text,Coming and keeping up
+row 2,stalled,do not contact,Nothing handed in for two homework weeks
+row 3,stalled,call,Missed the last two sessions
+row 4,on track,text,"Away with notice, so the missed sessions don't count"
+row 5,on track,paper,"Away with notice, so the missed sessions don't count"
+row 6,on track,text,"Diary on hold, so the blanks don't count"
+row 7,on track,call,"Homework wasn't set in week 2, so the blank doesn't count"
+row 8,on track,text,Coming and keeping up
+row 9,on track,call,Coming and keeping up
+row 10,on track,text,Coming and keeping up
+row 11,on track,call,Coming and keeping up
+row 12,stalled,paper,Missed the last two sessions
+row 13,on track,text,Coming and keeping up
+row 14,on track,call,Coming and keeping up
+row 15,on track,paper,Coming and keeping up
+row 16,on track,text,Coming and keeping up

@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Steady Money Progress Check</title>
+  <style>
+/* Steady Money Progress Check.
+   Layout: white top bar with five views on a light grey page. White rounded
+   cards, thin borders, pill tags, one gradient used only as a hairline and
+   accents. No fonts or scripts are loaded from the internet. */
+:root{
+  --bg:#f5f6f8; --surface:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e3e7ed;
+  --pill:#e8eaff; --pill-ink:#2b2a8f; --tag:#eef0f4; --link:#1d4ed8;
+  --good:#15803d; --good-soft:#e8f7ee; --good-line:#bde5cc; --warn:#9a5b00; --warn-soft:#fef3d6; --warn-line:#f3dc9b; --bad:#b4372a; --bad-soft:#fbe5e1; --bad-line:#f1c2ba;
+  --grad:linear-gradient(90deg,#e11db9,#7c3aed 50%,#2f80ed);
+  --font:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0e1217; --surface:#161c24; --ink:#eef2f7; --muted:#94a3b8; --line:#273140;
+  --pill:#26285c; --pill-ink:#c9ccff; --tag:#222b37; --link:#8ab4ff;
+  --good:#6fd39a; --good-soft:#15291f; --good-line:#25513a; --warn:#f0c060; --warn-soft:#302711; --warn-line:#5b4a1a; --bad:#f19a8c; --bad-soft:#3a1f1b; --bad-line:#6b332b; color-scheme:dark}}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.5;margin:0;padding:0}
+.topbar{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.topbar::after{content:"";display:block;height:3px;background:var(--grad)}
+.topin{max-width:1180px;margin-inline:auto;padding:12px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1.15rem;letter-spacing:-.02em}
+.brand .tagp{background:var(--grad);color:#fff;font-size:.8rem;padding:2px 9px;border-radius:4px;font-weight:600;letter-spacing:0}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tabs button{font:inherit;font-weight:500;color:var(--muted);background:none;border:0;border-bottom:2px solid transparent;padding:6px 10px;cursor:pointer;transition:color .15s,border-color .2s}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.tabs button[disabled]{opacity:.4;cursor:not-allowed}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:24px;padding-block:22px 56px;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-weight:700;letter-spacing:-.02em;margin:0;line-height:1.2;text-wrap:balance}
+h1{font-size:1.7rem} h2{font-size:1.2rem} h3{font-size:1.05rem}
+p{margin:0} .muted{color:var(--muted)} .small{font-size:.85rem}
+.label{font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.banner{background:var(--warn-soft);color:var(--warn);border:1px solid var(--warn-line);border-radius:10px;padding:8px 12px;font-size:.88rem}
+.banner.bad{background:var(--bad-soft);color:var(--bad);border-color:var(--bad-line);white-space:pre-wrap}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+.sec{display:flex;flex-direction:column;gap:12px}
+.bar{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;gap:12px;min-width:0}
+.counts{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.counts.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:640px){.counts{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.count{display:flex;flex-direction:column}
+.count b{font-size:1.6rem;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.count.on b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn{font:inherit;font-weight:600;border-radius:8px;padding:8px 14px;border:1px solid var(--ink);background:var(--ink);color:var(--surface);cursor:pointer;text-decoration:none;display:inline-block;transition:transform .12s,opacity .15s}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.quiet{background:transparent;color:var(--muted);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn:hover:not([disabled]){transform:translateY(-1px)} .btn:active:not([disabled]){transform:scale(.98)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.between{justify-content:space-between}
+.pill{display:inline-block;border-radius:99px;padding:3px 11px;font-size:.8rem;font-weight:500;background:var(--pill);color:var(--pill-ink);white-space:nowrap}
+.pill.tag{background:var(--tag);color:var(--ink)} .pill.good{background:var(--good-soft);color:var(--good)} .pill.warn{background:var(--warn-soft);color:var(--warn)} .pill.bad{background:var(--bad-soft);color:var(--bad)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:var(--muted);flex:none} .dot.g{background:#16a34a} .dot.a{background:#f59e0b}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.ones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media(max-width:780px){.ones{grid-template-columns:minmax(0,1fr)}}
+.box{border-radius:10px;padding:10px 12px;font-size:.9rem;border:1px solid}
+.box.stuck{background:var(--warn-soft);border-color:var(--warn-line)} .box.lived{background:var(--good-soft);border-color:var(--good-line)}
+.box .label{display:block;margin-bottom:2px} .box.stuck .label{color:var(--warn)} .box.lived .label{color:var(--good)}
+.big{display:block;font-size:1rem;font-weight:600;line-height:1.35}
+.vs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:stretch}
+@media(max-width:640px){.vs{grid-template-columns:minmax(0,1fr)}}
+.ref{font-size:.72rem;color:var(--muted);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 16px}
+summary{cursor:pointer;font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+table.res{table-layout:fixed;min-width:760px}
+table.res th:nth-child(1),table.res td:nth-child(1){width:23%}
+table.res th:nth-child(2),table.res td:nth-child(2){width:13%}
+table.res th:nth-child(3),table.res td:nth-child(3){width:27%}
+table.res th:nth-child(4),table.res td:nth-child(4){width:37%}
+table.res td b{white-space:nowrap}
+.item{border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;background:var(--surface)}
+.item.done{opacity:.85;background:transparent}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:8px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px}
+.form .full{grid-column:1/-1}
+@media(max-width:640px){.form{grid-template-columns:minmax(0,1fr)}}
+.form label{display:flex;flex-direction:column;gap:3px;font-size:.8rem;color:var(--muted)}
+.form input,.form select,#by{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px 10px;min-width:0}
+.btn.sm{padding:5px 11px;font-size:.85rem}
+.filters{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:10px;align-items:center}
+@media(max-width:760px){.filters{grid-template-columns:minmax(0,1fr)}}
+.filters input[type=search],.filters select,.pathrow input,select.pick{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 12px;width:100%;min-width:0}
+select.pick{width:auto}
+.drop{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.drop input[type=file]{font:inherit;color:var(--muted);max-width:100%}
+.pathrow{display:flex;gap:8px;align-items:center}
+.pathrow input{flex:1}
+.loglist{display:flex;flex-direction:column;gap:4px;font-size:.88rem;margin-top:8px}
+.loglist span{display:flex;align-items:baseline;gap:2px}
+.loglist .sub{padding-left:15px;color:var(--muted)}
+ul.plain{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.mask{letter-spacing:.12em;color:var(--muted);white-space:nowrap}
+[hidden]{display:none!important}
+#importOut{display:flex;flex-direction:column;gap:14px}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.enter{animation:rise .26s cubic-bezier(.2,.7,.2,1) both}
+@media (prefers-reduced-motion:reduce){.enter{animation:none}.btn,.tabs button{transition:none}.btn:hover:not([disabled]){transform:none}}
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="topin">
+    <div class="brand"><span>Steady Money</span><span class="tagp">Progress Check</span></div>
+    <nav class="tabs" role="tablist" aria-label="Views">
+      <button role="tab" id="tab-import" aria-selected="true" data-tab="import">Import</button>
+      <button role="tab" id="tab-results" aria-selected="false" data-tab="results" disabled>Results</button>
+      <button role="tab" id="tab-sheets" aria-selected="false" data-tab="sheets" disabled>Friday sheets</button>
+      <button role="tab" id="tab-page" aria-selected="false" data-tab="page" disabled>One page</button>
+      <button role="tab" id="tab-check" aria-selected="false" data-tab="check" disabled>Check list</button>
+    </nav>
+  </div></div>
+
+  <main class="wrap">
+    <!-- 1. Import -->
+    <section id="view-import" class="sec" style="gap:20px">
+      <div class="sec"><h1>Import</h1><p class="muted">One agency's files: the attendance sheet, the session notes and the diary sheet. A zip is fine. Leave the files exactly as they are. Nothing leaves this computer.</p></div>
+      <div class="bar">
+        <div class="drop"><input id="file" type="file" multiple accept=".zip,.csv,.tsv,.txt,.md,.xlsx" aria-label="Choose a zip or the agency's files"><span class="muted">or</span><button class="btn ghost" data-act="sample" data-id="cole_street">Use the Cole Street sample</button><button class="btn ghost" data-act="sample" data-id="bayfield">Use the Bayfield sample</button></div>
+        <details><summary>Or give the path to a folder or zip on this computer</summary>
+          <div class="pathrow" style="margin-top:10px"><input id="path" placeholder="/Users/you/Downloads/agency.zip" aria-label="Path to a folder or zip"><button class="btn" data-act="path">Read it</button></div></details>
+        <div id="importOut"></div>
+      </div>
+    </section>
+
+    <!-- 2. Results -->
+    <section id="view-results" class="sec" style="gap:20px" hidden>
+      <div class="bar" id="counts"></div>
+      <div class="bar"><div class="filters">
+        <input id="q" type="search" placeholder="Search by client number, name or reason" aria-label="Search">
+        <select id="fc" aria-label="Counsellor"><option value="">Every counsellor</option></select>
+        <select id="fs" aria-label="Status"><option value="">Every status</option><option value="stalled">Stalled</option><option value="on track">On track</option><option value="dnc">Do not contact</option><option value="check">To check</option></select>
+        <label class="row small"><input type="checkbox" id="hide"> Hide names</label>
+      </div></div>
+      <div class="row between"><p class="muted" id="rcount"></p><div class="row" id="dl"></div></div>
+      <div class="bar"><div class="scroll"><table class="res"><thead><tr><th>Client</th><th>Status</th><th>Way to reach</th><th>Why</th></tr></thead><tbody id="rows"></tbody></table></div></div>
+    </section>
+
+    <!-- 3. Friday sheets -->
+    <section id="view-sheets" class="sec" style="gap:20px" hidden>
+      <div class="row between"><div class="sec" style="gap:4px"><h1>Friday sheet</h1><p class="muted" id="sheetSub"></p></div>
+        <div class="row"><select id="who" class="pick" aria-label="Counsellor"></select><a class="btn" id="printSheet" target="_blank" rel="noopener">Open the sheet to print</a></div></div>
+      <p class="banner">For the counsellor only. Anyone who asked not to be contacted between sessions is left off. This tool never sends anything: every contact is the counsellor's decision.</p>
+      <div id="sheetOut" class="sec" style="gap:24px"></div>
+    </section>
+
+    <!-- 4. One page -->
+    <section id="view-page" class="sec" style="gap:20px" hidden>
+      <div class="row between"><div class="sec" style="gap:4px"><h1 id="pageTitle"></h1><p class="muted" id="pageSub"></p></div>
+        <a class="btn" id="printPage" target="_blank" rel="noopener">Open the page to print</a></div>
+      <div id="pageOut" class="sec" style="gap:20px"></div>
+    </section>
+
+    <!-- 5. Check list -->
+    <section id="view-check" class="sec" style="gap:20px" hidden>
+      <div class="sec" style="gap:4px"><h1>Check list</h1><p class="muted">What the tool couldn't settle on its own. It flags these; it doesn't guess. Confirm, edit or resolve each one. Every action is recorded with who did it and when, and the results are worked out again.</p></div>
+      <div id="checkOut" class="sec" style="gap:20px"></div>
+    </section>
+  </main>
+
+  <script>
+/* Steady Money Progress Check. The page only shows what app.py returns.
+   All reading and every rule lives in the Python files beside it. */
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const $=id=>document.getElementById(id);
+const VIEWS=['import','results','sheets','page','check'];
+let R=null;      // the last run
+let busy=false;
+let form=null;   // {key, mode} of the review form that is open
+const openItems=()=>R.items.filter(i=>i.state==='open');
+const openFor=id=>R.items.filter(i=>i.state==='open'&&i.client_id===id);
+function who(){try{return localStorage.getItem('sm_reviewer')||'';}catch(e){return window._by||'';}}
+function setWho(v){window._by=v;try{localStorage.setItem('sm_reviewer',v);}catch(e){}}
+
+function setTab(t){
+  VIEWS.forEach(v=>{$('view-'+v).hidden=v!==t;$('tab-'+v).setAttribute('aria-selected',v===t);});
+  if(t==='results')renderResults(); if(t==='sheets')renderSheet(); if(t==='page')renderPage(); if(t==='check')renderCheck();
+  const v=$('view-'+t); v.classList.remove('enter'); void v.offsetWidth; v.classList.add('enter');
+  scrollTo(0,0);
+}
+function enableTabs(on){VIEWS.slice(1).forEach(v=>$('tab-'+v).disabled=!on);}
+
+/* ---- import ---- */
+async function post(body){
+  if(busy)return; busy=true; R=null; enableTabs(false);
+  $('importOut').innerHTML='<p class="muted">Reading the files…</p>';
+  try{
+    const r=await fetch('/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const j=await r.json();
+    if(j.stopped){renderStopped(j.stopped);}else{R=j;enableTabs(true);renderImport();}
+  }catch(e){renderStopped('The page could not reach the tool. Is app.py still running? ('+e+')');}
+  busy=false;
+}
+function b64(buf){let s='';const b=new Uint8Array(buf);for(let i=0;i<b.length;i+=0x8000)s+=String.fromCharCode.apply(null,b.subarray(i,i+0x8000));return btoa(s);}
+async function loadFiles(list){
+  const files=[];
+  for(const f of list)files.push({name:f.name,data:b64(await f.arrayBuffer())});
+  post({files});
+}
+function renderStopped(msg){
+  $('importOut').innerHTML=`<p><b>Stopped</b> <span class="pill bad">No results were written</span></p><div class="banner bad">${esc(msg)}</div>
+    <p class="muted">The tool stops on purpose when it can't read the files well enough. Without the notes it can't know who asked not to be contacted.</p>`;
+}
+function logList(){
+  return R.log.map(l=>{const sub=l.startsWith('  ');const off=/not used|not read|could not/.test(l);
+    return `<span class="${sub?'sub':''}">${sub?'':`<span class="dot ${off?'a':'g'}"></span>`}${esc(l.trim())}</span>`;}).join('');
+}
+function renderImport(){
+  const c=R.clients, flags=openItems().length;
+  const prev=c.slice(0,3).map(x=>`<tr><td class="ref">${esc(x.id)}</td><td class="mask">•••• ••••</td><td>${statusPill(x)}</td><td>${reachPill(x)}</td></tr>`).join('');
+  $('importOut').innerHTML=`
+    <div class="counts three"><div class="count on"><b>${esc(R.agency)}</b><span class="muted">agency, from the file names</span></div>
+      <div class="count on"><b>${R.clients_n}</b><span class="muted">clients on the attendance sheet</span></div>
+      <div class="count on"><b>1 to ${R.last_session}</b><span class="muted">sessions read${R.first_date?`, ${esc(R.first_date)} to ${esc(R.last_date)}`:''}</span></div></div>
+    <p><span class="pill good">Read</span> ${flags?`<span class="pill warn">${flags} to check</span>`:'<span class="pill tag">Nothing to check</span>'}</p>
+    <details><summary>How each file was read</summary><div class="loglist">${logList()}</div></details>
+    <div><span class="label">Preview. Names stay on this computer.</span>
+      <div class="scroll" style="margin-top:6px"><table><thead><tr><th>Client</th><th>Name</th><th>Status</th><th>Way to reach</th></tr></thead><tbody>${prev}</tbody></table></div></div>
+    <div class="row"><button class="btn" data-tab="results">Show the results</button><button class="btn ghost" data-tab="page">Show the one page</button></div>`;
+  const sel=$('fc'), who=$('who'), staff=[...new Set(c.map(x=>x.counsellor))].sort();
+  sel.innerHTML='<option value="">Every counsellor</option>'+staff.map(s=>`<option>${esc(s)}</option>`).join('');
+  who.innerHTML=staff.map(s=>`<option>${esc(s||'All clients')}</option>`).join('');
+}
+
+/* ---- results ---- */
+const statusPill=x=>x.status==='stalled'?'<span class="pill warn">Stalled</span>':'<span class="pill good">On track</span>';
+const reachPill=x=>x.dnc?'<span class="pill bad">Do not contact</span>':`<span class="pill ${x.decide?'tag':''}">${esc(x.reach)}</span>`;
+const fileLink=(name,label,cls)=>R.files.includes(name)?`<a class="btn ${cls||'quiet'}" href="/out/${R.run}/${name}" target="_blank" rel="noopener" ${name.endsWith('.csv')?'download':''}>${label}</a>`:'';
+function renderResults(){
+  const c=R.clients, n=f=>c.filter(f).length;
+  const cell=(v,l)=>`<div class="count ${v?'on':''}"><b>${v}</b><span class="muted">${l}</span></div>`;
+  $('counts').innerHTML=`<div class="row between"><h2>${esc(R.agency)}</h2><span class="muted small">Sessions 1 to ${R.last_session} of 6</span></div><div class="counts">
+    ${cell(R.clients_n,'clients')}${cell(n(x=>x.status==='on track'),'on track')}${cell(n(x=>x.status==='stalled'),'stalled')}${cell(n(x=>x.dnc),'do not contact')}${cell(n(x=>x.group==='call'&&!x.dnc),'to reach out to')}${cell(openItems().length,'still to check')}</div>`;
+  $('dl').innerHTML=fileLink('results.csv','Download results.csv','ghost')+fileLink('results-detail.csv','With names, for staff');
+  const q=$('q').value.trim().toLowerCase(), fc=$('fc').value, fs=$('fs').value, hide=$('hide').checked;
+  const list=c.filter(x=>{
+    const hay=(x.id+' '+x.name+' '+x.why+' '+x.reach_detail).toLowerCase();
+    const okS=!fs||(fs==='dnc'?x.dnc:fs==='check'?openFor(x.id).length>0:x.status===fs);
+    return (!q||hay.includes(q))&&(!fc||x.counsellor===fc)&&okS;});
+  $('rcount').textContent=`${list.length} of ${c.length} clients`;
+  $('rows').innerHTML=list.map(x=>`<tr>
+    <td><span class="ref">${esc(x.id)}</span><br>${hide?'<span class="mask">•••• ••••</span>':`<b>${esc(x.name)}</b>`}<br><span class="muted small">${esc(x.counsellor)}</span></td>
+    <td>${statusPill(x)}${x.just_back?'<br><span class="pill tag" style="margin-top:4px">Just back</span>':''}</td>
+    <td>${reachPill(x)}<br><span class="muted small">${esc(x.reach_detail)}</span></td>
+    <td>${esc(x.why)}${x.detail?`<br><span class="muted small">${esc(x.detail)}</span>`:''}${x.edited?'<br><span class="pill" style="margin-top:4px">Edited by a reviewer</span>':''}${openFor(x.id).length?`<br><span class="pill warn" style="margin-top:4px">To check</span> <span class="muted small">${esc(openFor(x.id).map(i=>i.text).join(' '))}</span>`:''}</td></tr>`).join('')
+    ||'<tr><td colspan="4" class="muted">Nobody matches.</td></tr>';
+}
+
+/* ---- Friday sheets ---- */
+function person(x,showPhone){
+  return `<div class="card"><div class="row between"><span class="row"><b>${esc(x.name)}</b><span class="ref">${esc(x.id)}</span></span><span class="muted small">Last at a session: ${esc(x.last_seen)}</span></div>
+    <div class="vs"><div class="box stuck"><span class="label">Why they're here</span><b class="big">${esc(x.why)}</b>${x.detail?`<span class="small">${esc(x.detail)}</span>`:''}</div>
+      <div class="box lived"><span class="label">How to reach them, newest in the notes</span><b class="big">${esc(x.reach_detail)}</b>${showPhone&&x.phone?`<span class="small">${esc(x.phone)}</span>`:''}</div></div></div>`;
+}
+function renderSheet(){
+  const staff=$('who').value, key=staff==='All clients'?'':staff;
+  const mine=R.clients.filter(x=>x.counsellor===key&&!x.dnc);
+  const by=(a,b)=>a.last_seen.localeCompare(b.last_seen)||a.name.localeCompare(b.name);
+  const call=mine.filter(x=>x.group==='call'&&!x.decide).sort(by), decide=mine.filter(x=>x.group==='call'&&x.decide).sort(by);
+  const next=mine.filter(x=>x.group==='next').sort((a,b)=>a.name.localeCompare(b.name)), flagged=mine.filter(x=>x.flags.length);
+  $('sheetSub').textContent=`${R.agency} · records up to session ${R.last_session}${R.last_date?` (${R.last_date})`:''}${R.next_session?` · next session: ${R.next_session}${R.next_date?` (${R.next_date})`:''}`:''}`;
+  const slug=(staff||'all').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'all';
+  $('printSheet').href=`/out/${R.run}/friday-sheet-${slug}.html`;
+  const sec=(title,pill,note,list,phone)=>`<div class="sec"><div class="row"><h2>${title}</h2><span class="pill ${pill}">${list.length}</span></div>${note?`<p class="muted small">${note}</p>`:''}
+    ${list.length?`<div class="ones">${list.map(x=>person(x,phone)).join('')}</div>`:'<p class="muted">Nobody this week.</p>'}</div>`;
+  $('sheetOut').innerHTML=
+    sec('Reach out this week: may be drifting away','warn','',call,true)+
+    (decide.length?sec('Your decision first: no way confirmed by the client','bad','They have stopped coming and the only way on file was not agreed by them. Nothing is suggested until you decide.',decide,false):'')+
+    sec('Talk at the next session, no call needed','','They are coming but the diary hasn\'t come back. A quiet word about what goes where on the page, and what the diary is for.',next,false)+
+    `<div class="sec"><div class="row"><h2>Please check</h2><span class="pill tag">${flagged.length}</span></div>${flagged.length?`<div class="bar"><ul class="plain">${flagged.map(x=>`<li><b>${esc(x.name)}</b>: ${esc(x.flags.join(' '))}</li>`).join('')}</ul></div>`:'<p class="muted">Nothing to check.</p>'}</div>`+
+    (R.money_check_next?`<p class="banner"><b>Session ${R.next_session} is a Money Check session.</b> While you are sitting down one-to-one, ask each person privately how they want to be reached now, and write it in your notes. The first-day sheet goes out of date.</p>`:'');
+}
+
+/* ---- one page ---- */
+function renderPage(){
+  const s=R.summary, has=s.checks>=2, fin=has&&s.last_n===6;
+  const lab=(n,h,w)=>n?`session ${n}`:`the ${w} check (“${h}”)`;
+  $('pageTitle').textContent=`${R.agency}: results for this group`;
+  $('pageSub').textContent=`${fin?'Final results':'A halfway view: the group has not finished'} · sessions 1 to ${R.sessions} of 6${R.first_date?`, ${R.first_date} to ${R.last_date}`:''}`;
+  $('printPage').href=`/out/${R.run}/renewal-page.html`;
+  let h=`<p class="banner"><b>Draft.</b> For the director to check and sign before it goes to anyone. No client is named on this page. Whole-group totals only.</p>`;
+  if(s.started<10)h+=`<p class="banner"><b>Small group (${s.started} people).</b> Totals this small could point to an individual. Check with the director before sharing outside the agency.</p>`;
+  h+=`<div class="bar"><div class="counts three">
+    <div class="count on"><b>${s.started}</b><span class="muted">started: everyone on the attendance sheet</span></div>
+    <div class="count on"><b>${has?s.scored:'not known'}</b><span class="muted">took both Money Checks</span></div>
+    <div class="count on"><b>${has?s.better:'not known'}</b><span class="muted">improved: score up ${s.line} points or more${s.line_confirmed?'':' (proposed line)'}</span></div></div></div>`;
+  h+=`<div class="ones"><div class="bar"><h3>Everyone who started (${s.started})</h3><table><tbody>
+    <tr><td>Still coming</td><td class="num">${s.stuck-s.away}</td></tr><tr><td>Away with notice, expected back</td><td class="num">${s.away}</td></tr>
+    <tr><td>Missed the last two sessions with no notice</td><td class="num">${s.stopped}</td></tr><tr><td><b>Stuck with it so far</b></td><td class="num"><b>${s.stuck} of ${s.started}</b></td></tr></tbody></table></div>`;
+  if(has){const a=lab(s.first_n,s.first_label,'first'), z=lab(s.last_n,s.last_label,'latest');
+    h+=`<div class="bar"><h3>Money Check: ${esc(a)} compared with ${esc(z)}</h3><table><tbody>
+      <tr><td>Up ${s.line} points or more (counted as improved)</td><td class="num">${s.better}</td></tr><tr><td>Up 1 to ${s.line-1} points</td><td class="num">${s.up_by[1]-s.better}</td></tr>
+      <tr><td>No change</td><td class="num">${s.same}</td></tr><tr><td>Down</td><td class="num">${s.down}</td></tr>
+      <tr><td>Not known: did not take both checks</td><td class="num">${s.unknown}</td></tr><tr><td><b>Total</b></td><td class="num"><b>${s.started}</b></td></tr></tbody></table>
+      <p class="muted small">Full spread (points: people): ${s.dist.map(([k,v])=>`${k>0?'+':''}${k}: ${v}`).join(', ')}. At a 1-point line ${s.up_by[1]} would count; at 2, ${s.up_by[2]}; at 5, ${s.up_by[5]}.</p></div>`;}
+  else h+=`<div class="bar"><h3>Money Check</h3><p class="muted">Fewer than two Money Check columns were found, so no change can be shown.</p></div>`;
+  h+=`</div><div class="ones"><div class="bar"><h3>How we counted</h3><ul class="plain">
+      <li><b>Started:</b> everyone on the attendance sheet.</li><li><b>Took both Money Checks:</b> has a score at both checks.</li>
+      <li><b>Improved:</b> the score rose by ${s.line} points or more. A rise of 1 or 2 is shown but not counted, because it could be one good day.${s.line_confirmed?'':' This line is proposed and not yet confirmed by the counsellors.'}</li>
+      <li><b>Stuck with it:</b> has not missed the last two sessions without telling the counsellor ahead. Diaries are not part of this count.</li>
+      <li>Nobody without a latest score is counted as improved, and nobody is left out of the totals.</li></ul></div>
+    <div class="bar"><h3>What this page can't tell you</h3><ul class="plain">
+      <li>Scores are the client's own rating, given face to face with their counsellor.</li>${fin?'':'<li>This is a halfway view. The final Money Check is at session 6.</li>'}
+      <li>There is no written scoring guide, so these numbers should not be compared with another agency's.</li><li>It covers this one group only.</li></ul></div></div>`;
+  $('pageOut').innerHTML=h;
+}
+
+/* ---- check list: confirm, edit or resolve, with who and when ---- */
+const STATE={confirmed:['good','Confirmed'],resolved:['good','Resolved'],edited:['','Edited']};
+function itemForm(i){
+  if(!form||form.key!==i.key)return '';
+  const c=R.clients.find(x=>x.id===i.client_id);
+  const opt=(vals,cur)=>vals.map(v=>`<option${v===cur?' selected':''}>${v}</option>`).join('');
+  const edit=form.mode==='edit'&&c;
+  return `<div class="form">
+    ${edit?`<label>Status<select id="f-status">${opt(['on track','stalled'],c.status)}</select></label>
+      <label>Way to reach<select id="f-reach">${opt(['call','text','paper','do not contact'],c.reach)}</select></label>`:''}
+    <label class="full">${form.mode==='confirm'?'Note (optional)':'What you checked, and with whom'}<input id="f-note" placeholder="${form.mode==='edit'?'e.g. Asked her at the session: calls are fine':form.mode==='resolve'?'e.g. Checked the paper folder; nothing to change':'e.g. Agreed with the counsellor'}"></label>
+    <div class="row full"><button class="btn sm" data-act="save" data-key="${esc(i.key)}">${form.mode==='edit'?'Save the change and work it out again':form.mode==='resolve'?'Mark as resolved':'Confirm the tool\'s answer'}</button><button class="btn sm quiet" data-act="cancel">Cancel</button></div>
+    <div id="f-err" class="banner bad full" hidden></div></div>`;
+}
+function itemCard(i){
+  const c=i.client_id?R.clients.find(x=>x.id===i.client_id):null;
+  const head=c?`<span class="row"><b>${esc(i.name)}</b><span class="ref">${esc(i.client_id)}</span><span class="muted small">${esc(i.counsellor)}</span></span>
+      <span class="row">${statusPill(c)}${reachPill(c)}</span>`:'<b>About the files</b>';
+  if(i.state!=='open'){const s=STATE[i.state];
+    return `<div class="item done"><div class="row between">${head}</div><p class="small">${esc(i.text)}</p>
+      <div class="row between"><span class="small"><span class="pill ${s[0]}">${s[1]}</span> by <b>${esc(i.by)}</b> on ${esc(i.at)}${i.note?` · ${esc(i.note)}`:''}</span>
+      <button class="btn sm quiet" data-act="reopen" data-key="${esc(i.key)}">Reopen</button></div></div>`;}
+  return `<div class="item"><div class="row between">${head}</div><p>${esc(i.text)}</p>
+    <div class="row"><button class="btn sm ghost" data-act="rev" data-mode="confirm" data-key="${esc(i.key)}">Confirm</button>
+      ${c?`<button class="btn sm ghost" data-act="rev" data-mode="edit" data-key="${esc(i.key)}">Edit</button>`:''}
+      <button class="btn sm ghost" data-act="rev" data-mode="resolve" data-key="${esc(i.key)}">Resolve</button></div>${itemForm(i)}</div>`;
+}
+function renderCheck(){
+  const open=openItems(), done=R.items.filter(i=>i.state!=='open'), dnc=R.clients.filter(x=>x.dnc);
+  const urgent=open.filter(i=>i.text.startsWith('IMPORTANT'));
+  const log=R.review_log.slice().reverse();
+  $('checkOut').innerHTML=
+    `<div class="bar"><div class="row between"><label class="row small">Reviewed by <input id="by" value="${esc(who())}" placeholder="Your name" aria-label="Reviewed by"></label>
+      <span class="row"><span class="pill ${open.length?'warn':'good'}">${open.length} still to check</span><span class="pill tag">${done.length} done</span></span></div>
+      <p class="muted small"><b>Confirm</b>: the tool's answer is right. <b>Edit</b>: change the status or the way to reach; the results, Friday sheets and one page are worked out again. <b>Resolve</b>: dealt with, nothing to change. The agency's files are never altered.</p></div>`+
+    urgent.map(i=>`<div class="banner bad">${esc(i.text)}</div>`).join('')+
+    `<div class="sec"><div class="row"><h2>Still to check</h2><span class="pill ${open.length?'warn':'tag'}">${open.length}</span></div>${open.length?open.map(itemCard).join(''):'<p class="muted">Nothing left to check.</p>'}</div>
+    <div class="sec"><div class="row"><h2>Done</h2><span class="pill tag">${done.length}</span></div>${done.length?done.map(itemCard).join(''):'<p class="muted">Nothing reviewed yet.</p>'}</div>
+    <div class="sec"><div class="row between"><div class="row"><h2>Review record</h2><span class="pill tag">${log.length}</span></div>${fileLink('review-log.csv','Download review-log.csv')}</div>
+      ${log.length?`<div class="bar"><div class="scroll"><table><thead><tr><th>When</th><th>Reviewed by</th><th>Action</th><th>Client</th><th>Change</th><th>Note</th></tr></thead><tbody>${log.map(e=>`<tr><td>${esc(e.at)}</td><td>${esc(e.by)}</td><td>${esc(e.action)}</td><td>${e.client_id?`<span class="ref">${esc(e.client_id)}</span> ${esc(e.name)}`:'files'}</td><td>${e.before?`${esc(e.before.status)} / ${esc(e.before.reach)} → <b>${esc(e.after.status)} / ${esc(e.after.reach)}</b>`:''}</td><td>${esc(e.note)}</td></tr>`).join('')}</tbody></table></div></div>`:'<p class="muted">No actions recorded yet.</p>'}</div>
+    <div class="sec"><div class="row"><h2>Left off every Friday sheet at their own request</h2><span class="pill bad">${dnc.length}</span></div>${dnc.length?`<div class="bar"><ul class="plain">${dnc.map(x=>`<li><b>${esc(x.name)}</b> (${esc(x.counsellor)}): ${esc(x.reach_detail)}</li>`).join('')}</ul></div>`:'<p class="muted">Nobody.</p>'}</div>
+    <details><summary>How each file was read</summary><div class="loglist">${logList()}</div></details>
+    <div class="row">${fileLink('check-list.html','Open the check list to print','ghost')}</div>`;
+}
+async function sendReview(action,key){
+  const i=R.items.find(x=>x.key===key); if(!i||busy)return;
+  const by=($('by')?$('by').value:who()).trim(); setWho(by);
+  const body={folder:R.folder,action,key,client_id:i.client_id,by,
+    note:$('f-note')?$('f-note').value:'',status:$('f-status')?$('f-status').value:'',reach:$('f-reach')?$('f-reach').value:''};
+  busy=true;
+  try{
+    const r=await fetch('/review',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const j=await r.json();
+    if(j.error||j.stopped){const m=j.error||j.stopped;
+      if($('f-err')){$('f-err').textContent=m;$('f-err').hidden=false;}else alertTop(m);}
+    else{R=j;form=null;renderCheck();}
+  }catch(e){alertTop('The page could not reach the tool. Is app.py still running?');}
+  busy=false;
+}
+function alertTop(m){const d=document.createElement('div');d.className='banner bad';d.textContent=m;$('checkOut').prepend(d);}
+
+document.addEventListener('click',e=>{
+  const tab=e.target.closest('[data-tab]'); if(tab&&!tab.disabled){setTab(tab.dataset.tab);return;}
+  const b=e.target.closest('[data-act]'); if(!b)return;
+  if(b.dataset.act==='rev'){setWho($('by').value.trim());form={key:b.dataset.key,mode:b.dataset.mode};renderCheck();const n=$('f-note');if(n)n.focus();return;}
+  if(b.dataset.act==='cancel'){form=null;renderCheck();return;}
+  if(b.dataset.act==='save'){sendReview(form.mode,b.dataset.key);return;}
+  if(b.dataset.act==='reopen'){sendReview('reopen',b.dataset.key);return;}
+  if(b.dataset.act==='sample')post({sample:b.dataset.id});
+  if(b.dataset.act==='path'&&$('path').value.trim())post({path:$('path').value});
+});
+document.addEventListener('change',e=>{
+  if(e.target.id==='file'&&e.target.files.length)loadFiles(e.target.files);
+  if(e.target.id==='who')renderSheet();
+  if(['fc','fs','hide'].includes(e.target.id))renderResults();
+});
+document.addEventListener('input',e=>{if(e.target.id==='q')renderResults();if(e.target.id==='by')setWho(e.target.value.trim());});
+$('path').addEventListener('keydown',e=>{if(e.key==='Enter'&&$('path').value.trim())post({path:$('path').value});});
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+client_id,name,status,way_to_reach,judgment_call,what_it_tests
+H01,Ruth Adams,on track,do not contact,,'DNC' as an abbreviation
+H02,Leon Baker,on track,do not contact,,'prefers we leave him be'
+H03,Nina Clarke,on track,text,,"'has not called the bank' is about her, not about us contacting her"
+H04,Elena Diaz,on track,call,,"no contact, later lifted: 'fine to ring her again now'"
+H05,Carys Evans,on track,do not contact,,no-contact request made by phone on a day with no session
+H06,Dean Ford,on track,text,,"'Txt is fine now, has his own phone' (was Letter)"
+H07,Priya Green,on track,text,,'Do not ring - text only'
+H08,Simone Hall,on track,call,,voicemail OK on landline; nothing changes the method
+H09,Sami Ibrahim,on track,paper,,"three changes: shared phone, own phone, then disconnected"
+H10,Megan Jones,on track,call,yes,first-day 'Email' is not one of the four values
+H11,Tariq Khan,on track,call,yes,"missed last two, but rang ahead for one of them"
+H12,Hope Lewis,stalled,call,,"came once, then three absences and no notes"
+H13,Faith Moore,on track,text,yes,"two missed diaries, then one handed in"
+H14,Rory Nolan,on track,text,yes,"'on hold for one week', never marked as back on"
+H15,Mark Owens,on track,call,,"'forgot to hand out the diary', 'HW not given'"
+H16,Will Grant,on track,text,yes,initials 'WG' fit two clients; the no-contact note can't be placed
+H17,Wendy Gale,on track,call,yes,same: 'WG'
+H18,Jordan Pike,stalled,call,,"client Jordan, counsellor Jordan; a note written by the other counsellor"
+H19,Amy Quinn,on track,do not contact,,first-day column itself says 'No contact'
+H20,Stone Reid,on track,text,yes,"register says absent, the note says she came"

@@ -1,0 +1,21 @@
+#,"Client (SURNAME, First)",Worker,Phone,How to reach,S1,S2,S3,S4,Check A,Check B
+H01,"ADAMS, Ruth",Jordan Tate,902-555-8001,SMS,✓,✓,✓,✓,12,14
+H02,"BAKER, Leon",Jordan Tate,902-555-8002,Call,✓,✓,✓,✓,10,13
+H03,"CLARKE, Nina",Amy Stone,902-555-8003,SMS,✓,✓,✓,✓,13,13
+H04,"DIAZ, Elena",Amy Stone,902-555-8004,SMS,✓,✓,✓,✓,9,15
+H05,"EVANS, Carys",Jordan Tate,902-555-8005,Call,✓,✓,✓,✓,15,16
+H06,"FORD, Dean",Jordan Tate,902-555-8006,Letter,✓,✓,✓,✓,11,16
+H07,"GREEN, Priya",Amy Stone,902-555-8007,Call,✓,✓,✓,✓,12,12
+H08,"HALL, Simone",Amy Stone,902-555-8008,Call,✓,✓,✓,✓,14,18
+H09,"IBRAHIM, Sami",Jordan Tate,902-555-8009,SMS,✓,✓,✓,✓,8,11
+H10,"JONES, Megan",Jordan Tate,,Email,✓,✓,✓,✓,13,17
+H11,"KHAN, Tariq",Amy Stone,902-555-8011,Call,✓,✓,✗,✗,10,
+H12,"LEWIS, Hope",Amy Stone,902-555-8012,Call,✓,✗,✗,✗,9,
+H13,"MOORE, Faith",Jordan Tate,902-555-8013,SMS,✓,✓,✓,✓,12,15
+H14,"NOLAN, Rory",Jordan Tate,902-555-8014,SMS,✓,✓,✓,✓,11,11
+H15,"OWENS, Mark",Amy Stone,902-555-8015,Call,✓,✓,✓,✓,14,16
+H16,"GRANT, Will",Amy Stone,902-555-8016,SMS,✓,✓,✓,✓,13,14
+H17,"GALE, Wendy",Amy Stone,902-555-8017,Call,✓,✓,✓,✓,12,17
+H18,"PIKE, Jordan",Jordan Tate,902-555-8018,Call,✓,✓,✓,✓,10,14
+H19,"QUINN, Amy",Jordan Tate,902-555-8019,No contact,✓,✓,✓,✓,15,15
+H20,"REID, Stone",Amy Stone,902-555-8020,SMS,✓,✓,✗,✗,11,

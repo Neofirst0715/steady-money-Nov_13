@@ -1,0 +1,16 @@
+Ref,Last name,First name,Advisor,Tel,Contact by,Wk1 06-Oct,Wk2 13-Oct,Wk3 20-Oct,Wk4 27-Oct,Money Check 1,Money Check 2
+N01,Nasser,Farah,Devon Ross,902-555-6001,Text,Y,Y,Y,Y,11,15
+N02,Bell,Marcus,Devon Ross,902-555-6002,Phone,Y,Y,Y,Y,12,12
+N03,Okafor,Grace,Hana Aziz,902-555-6003,Text,Y,Y,N,N,14,
+N04,Whitby,Tom,Hana Aziz,902-555-6004,Phone,Y,Y,N,N,10,
+N05,Haddad,Lina,Devon Ross,902-555-6005,Text,Y,Y,Y,Y,9,13
+N06,Cho,Peter,Devon Ross,902-555-6006,Post,Y,Y,Y,Y,15,16
+N07,Mills,Sandra,Hana Aziz,902-555-6007,Text,Y,Y,Y,Y,13,17
+N08,Yusuf,Ahmed,Hana Aziz,902-555-6008,Text,Y,Y,Y,Y,12,13
+N09,Kowalski,Rita,Devon Ross,902-555-6009,Phone,Y,Y,N,N,11,
+N10,Marsh,Joe,Devon Ross,902-555-6010,Text,Y,Y,Y,Y,10,14
+N11,Fraser,Bill,Hana Aziz,902-555-6011,Phone,Y,Y,Y,Y,16,18
+N12,Santos,Maria,Devon Ross,902-555-6012,Text,Y,Y,Y,Y,12,16
+N13,Silva,Maria,Devon Ross,902-555-6013,Phone,Y,Y,Y,Late,13,13
+N14,Mensah,Kofi,Hana Aziz,902-555-6014,Phone,Y,N,Y,Y,8,12
+N15,Price,Dawn,Hana Aziz,902-555-6015,Text,Y,Y,Y,Y,14,19

@@ -1,0 +1,16 @@
+client_id,name,counsellor,status,way_to_reach,why,detail,contact_detail,on_friday_sheet,to_check
+N01,Farah Nasser,Devon Ross,on track,text,Coming and keeping up,,"text (first-day sheet, not confirmed since)",no,
+N02,Marcus Bell,Devon Ross,stalled,call,Nothing handed in for two homework weeks,Diary set in weeks 2 and 3; none handed in.,call (note of 13 Oct),talk at next session,
+N03,Grace Okafor,Hana Aziz,stalled,text,Missed the last two sessions,Absent at session 3 (20 Oct) and session 4 (27 Oct); no notice in the notes.,"text (first-day sheet, not confirmed since)",reach out,
+N04,Tom Whitby,Hana Aziz,on track,call,"Away with notice, so the missed sessions don't count",Away with notice for session 3; Diary on hold since 13 Oct; Missed session 4.,"call (first-day sheet, not confirmed since)",no,"A note on 13 Oct says they'd be away but the dates aren't clear; the next session was treated as away with notice. Diary on hold since 13 Oct. The notes don't say it's back on, so it still isn't counted. Please confirm."
+N05,Lina Haddad,Devon Ross,on track,text,"Homework wasn't set in week 2, so the blank doesn't count",One diary week missed (week 3).,"text (first-day sheet, not confirmed since)",no,"A note on 13 Oct mentions contact in words the tool doesn't know: ""ran over time on the rent arrears letter so no diary handed out."""
+N06,Peter Cho,Devon Ross,on track,paper,"Diary on hold, so the blanks don't count",One diary week missed (week 3).,"letter or paper note (first-day sheet, not confirmed since)",no,
+N07,Sandra Mills,Hana Aziz,on track,call,Coming and keeping up,,"call, no texts (note of 20 Oct)",no,A note on 20 Oct says no texts but gives no other way; shown as call. Please confirm.
+N08,Ahmed Yusuf,Hana Aziz,stalled,do not contact,Nothing handed in for two homework weeks,Diary set in weeks 2 and 3; none handed in.,Asked for no contact between sessions (note of 27 Oct).,left off (no contact),
+N09,Rita Kowalski,Devon Ross,stalled,paper,Missed the last two sessions,Absent at session 3 (20 Oct) and session 4 (27 Oct); no notice in the notes.,"no working way (note of 27 Oct, set by counsellor; not confirmed by client)",reach out,The number stopped working (27 Oct) and the notes give no other way to reach them. way_to_reach is shown as 'paper' only because the results file needs one of four values (the number no longer works). Nothing is suggested on the Friday sheet.
+N10,Joe Marsh,Devon Ross,on track,text,Coming and keeping up,,text (note of 27 Oct),no,
+N11,Bill Fraser,Hana Aziz,on track,call,Coming and keeping up,One diary week missed (week 3).,"call (first-day sheet, not confirmed since)",no,
+N12,Maria Santos,Devon Ross,on track,text,Coming and keeping up,,"text (first-day sheet, not confirmed since)",no,
+N13,Maria Silva,Devon Ross,on track,call,Coming and keeping up,One diary week missed (week 3).,"call (first-day sheet, not confirmed since)",no,
+N14,Kofi Mensah,Hana Aziz,on track,paper,Coming and keeping up,Missed session 2.,letter or paper note (note of 27 Oct),no,
+N15,Dawn Price,Hana Aziz,on track,call,Coming and keeping up,One diary week missed (week 2).,call (note of 20 Oct),no,Diary for week 3 isn't entered yet (not entered). It is not counted as missed.

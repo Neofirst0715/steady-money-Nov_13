@@ -1,0 +1,17 @@
+client_id,name,counsellor,status,way_to_reach,why,detail,contact_detail,on_friday_sheet,to_check
+row 1,Hannah Fox,Priya Nair,on track,text,Coming and keeping up,,"text (first-day sheet, not confirmed since)",no,
+row 2,Imran Qureshi,Priya Nair,stalled,do not contact,Nothing handed in for two homework weeks,"Diary set in weeks 1, 2, 3; none handed in.",Asked for no contact between sessions (note of 26 Jan).,left off (no contact),
+row 3,Olga Petrov,Sam Okafor,stalled,call,Missed the last two sessions,Absent at session 4 (26 Jan) and session 5 (2 Feb); no notice in the notes.,"call (first-day sheet, not confirmed since)",reach out,
+row 4,Luis Mendes,Sam Okafor,on track,text,"Away with notice, so the missed sessions don't count","Away with notice for sessions 4, 5; One diary week missed (week 3).","text (first-day sheet, not confirmed since)",no,
+row 5,Grace Li,Priya Nair,on track,paper,"Away with notice, so the missed sessions don't count","Away with notice for sessions 4, 5; One diary week missed (week 3).","letter or paper note (first-day sheet, not confirmed since)",no,
+row 6,Tom Reid,Priya Nair,on track,text,"Diary on hold, so the blanks don't count",One diary week missed (week 3).,"text (first-day sheet, not confirmed since)",no,
+row 7,Nadia Haddad,Sam Okafor,on track,call,"Homework wasn't set in week 2, so the blank doesn't count",One diary week missed (week 1).,"call (first-day sheet, not confirmed since)",no,"A note on 12 Jan mentions contact in words the tool doesn't know: ""long session on rent arrears with the landlord letter, didn't get to homework th"""
+row 8,Pete Walsh,Sam Okafor,on track,text,Coming and keeping up,,"text (first-day sheet, not confirmed since)",no,
+row 9,William Carter,Priya Nair,on track,call,Coming and keeping up,,email (note of 19 Jan),no,way_to_reach is shown as 'call' only because the results file needs one of four values ('email' isn't one of the four ways the results file allows). Nothing is suggested on the Friday sheet.
+row 10,Maria Santos,Sam Okafor,on track,text,Coming and keeping up,,"text (first-day sheet, not confirmed since)",no,
+row 11,Maria Lopez,Sam Okafor,on track,call,Coming and keeping up,,"call, after 6, no texts (note of 26 Jan)",no,
+row 12,Derek Shaw,Priya Nair,stalled,paper,Missed the last two sessions,Absent at session 4 (26 Jan) and session 5 (2 Feb); no notice in the notes.,"no working way (note of 2 Feb, set by counsellor; not confirmed by client)",reach out,The number stopped working (2 Feb) and the notes give no other way to reach them. way_to_reach is shown as 'paper' only because the results file needs one of four values (the number no longer works). Nothing is suggested on the Friday sheet.
+row 13,Yusuf Ali,Sam Okafor,on track,text,Coming and keeping up,Just back with the diary.,"text (first-day sheet, not confirmed since)",no,"Just back: missed weeks 1, 2, then handed in week 3. Counted as on track; please check."
+row 14,Fiona Burke,Priya Nair,on track,call,Coming and keeping up,,"call (first-day sheet, not confirmed since)",no,"A note on 12 Jan mentions contact in words the tool doesn't know: ""best to reach her through her sister for now."""
+row 15,Colin Tate,Sam Okafor,on track,paper,Coming and keeping up,,"letter or paper note (first-day sheet, not confirmed since)",no,"Diary for week 2, 3 isn't entered yet (blank). It is not counted as missed."
+row 16,Rita Gomez,Priya Nair,on track,text,Coming and keeping up,Missed session 3; One diary week missed (week 2).,"text (first-day sheet, not confirmed since)",no,
